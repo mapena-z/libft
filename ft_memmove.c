@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 19:05:50 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/19 11:00:41 by mapena-z         ###   ########.fr       */
+/*   Created: 2026/05/19 11:13:35 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/19 11:13:53 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*str;
-	size_t	i;
+	size_t				i;
+	unsigned char		*dest1;
+	const unsigned char	*src1;
 
-	i = 0;
-	str = (char *)s;
-	while (i < n)
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	dest1 = (unsigned char *)dest;
+	src1 = (unsigned char *)src;
+	if (src1 < dest1)
 	{
-		str[i] = 0;
-		i++;
+		while (n--)
+			dest1[n] = src1[n];
 	}
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			dest1[i] = src1[i];
+			i++;
+		}
+	}
+	return (dest);
 }

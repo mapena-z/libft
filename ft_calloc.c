@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 19:05:50 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/19 11:00:41 by mapena-z         ###   ########.fr       */
+/*   Created: 2026/05/19 11:19:14 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/19 11:35:37 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*str;
-	size_t	i;
+	unsigned char	*ptr;
+	size_t			i;
+	size_t			total;
 
+	if (size != 0 && nmemb > SIZE_MAX / size)
+		return (NULL);
+	total = nmemb * size;
+	ptr = malloc(total);
+	if (!ptr)
+		return (NULL);
 	i = 0;
-	str = (char *)s;
-	while (i < n)
+	while (i < total)
 	{
-		str[i] = 0;
+		ptr[i] = 0;
 		i++;
 	}
+	return (ptr);
 }

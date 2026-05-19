@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 19:05:50 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/19 11:00:41 by mapena-z         ###   ########.fr       */
+/*   Created: 2026/05/19 11:16:53 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/19 11:17:23 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*str;
-	size_t	i;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
 	i = 0;
-	str = (char *)s;
+	str1 = s1;
+	str2 = s2;
+	if (n == 0)
+		return (0);
 	while (i < n)
 	{
-		str[i] = 0;
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 		i++;
 	}
+	return (0);
 }
