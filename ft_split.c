@@ -1,34 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 11:19:14 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/21 11:20:40 by mapena-z         ###   ########.fr       */
+/*   Created: 2026/05/21 10:56:30 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/21 11:23:49 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+int	count_words(char const *str, char c)
 {
-	unsigned char	*ptr;
-	size_t			i;
-	size_t			total;
+	int	i;
+	int	words;
 
-	if (size != 0 && nmemb > SIZE_MAX / size)
-		return (NULL);
-	total = nmemb * size;
-	ptr = malloc(total);
-	if (!ptr)
-		return (NULL);
 	i = 0;
-	while (i < total)
+	words = 0;
+	while (str[i] != '\0')
 	{
-		ptr[i] = 0;
-		i++;
+		if (str[i] == c)
+		{
+			words++;
+			while (str[i] && str[i + 1] && str[i] == c)
+				i++;
+		}
+		else
+			i++;
 	}
-	return (ptr);
+	return (words);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	char	**array;
+
+	if (!s)
+		return (NULL);
+	array = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!array)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		
+	}
+	array[i] = '\0';
+	return (array);
 }
