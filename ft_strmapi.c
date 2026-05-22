@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpena-zu <mpena-zu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 15:48:23 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/22 02:15:20 by mpena-zu         ###   ########.fr       */
+/*   Created: 2026/05/21 10:56:30 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/22 03:11:23 by mpena-zu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	i;
-	size_t	len;
+	char	*word;
 
 	i = 0;
-	len = 0;
-	while (dst[len] != '\0' && len < size)
-		len++;
-	if (size <= len)
-		return (len + ft_strlen(src));
-	while (i + len < size - 1 && src[i] != '\0')
+	if (!s || !f)
+		return (NULL);
+	word = malloc(ft_strlen(s) + 1);
+	if (!word)
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		dst[i + len] = src[i];
+		word[i] = f(i, s[i]);
 		i++;
 	}
-	dst[i + len] = '\0';
-	return (len + ft_strlen(src));
+	word[i] = '\0';
+	return (word);
 }
