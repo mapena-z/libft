@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 11:19:14 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/21 11:20:40 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:29:07 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		ptr[i] = 0;
 		i++;
 	}
-	return (ptr);
+	return ((void *)ptr);
 }

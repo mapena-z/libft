@@ -1,26 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/22 21:36:39 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/23 14:45:15 by mapena-z         ###   ########.fr       */
+/*   Created: 2026/05/23 16:53:23 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/05/23 16:53:39 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
