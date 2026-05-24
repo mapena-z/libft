@@ -78,3 +78,12 @@ Open your terminal at the root of the project and use the following compilation 
 * **`make fclean`**: Performs a full cleanup. It removes all intermediate object files (`.o`) and also deletes the compiled static library file (`libft.a`).
 * **`make re`**: Force-rebuilds the entire library from scratch. It executes `fclean` followed immediately by `make` (or `make all`).
 
+## 📚 Resources
+
+### Classic References
+
+* Linux Man Pages: Official documentation outlining the expected behaviors of standard libc functions.
+
+* GeeksforGeeks - C Programming Language: Excellent deep dives into pointers, strings, and dynamic memory allocation.
+
+* GNU C Library Documentation: Deep technical references regarding core library design.
