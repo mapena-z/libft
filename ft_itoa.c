@@ -6,13 +6,13 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:25:23 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/22 20:36:12 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 17:24:28 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_len_int(long n)
+static int	ft_len_int(long n)
 {
 	int	len;
 

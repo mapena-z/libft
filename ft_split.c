@@ -6,13 +6,13 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 10:56:30 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/24 15:11:19 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 17:24:14 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(char const *str, char c)
+static int	count_words(char const *str, char c)
 {
 	int	i;
 	int	words;
@@ -33,7 +33,7 @@ int	count_words(char const *str, char c)
 	return (words);
 }
 
-int	len_word_array(char const *str, char c)
+static int	len_word_array(char const *str, char c)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	len_word_array(char const *str, char c)
 	return (i);
 }
 
-void	free_mem(char **s, int i)
+static void	free_mem(char **s, int i)
 {
 	while (i >= 0)
 	{
@@ -53,7 +53,7 @@ void	free_mem(char **s, int i)
 	free(s);
 }
 
-int	create_words(char **array, const char *str, char c)
+static int	create_words(char **array, const char *str, char c)
 {
 	int	i;
 	int	j;
