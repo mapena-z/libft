@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 10:56:30 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/23 16:56:37 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 15:11:19 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	count_words(char const *str, char c)
 	words = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == c)
+		while (str[i] == c)
+			i++;
+		if (str[i] != '\0')
 		{
 			words++;
-			while (str[i] && str[i + 1] && str[i] == c)
+			while (str[i] && str[i] != c)
 				i++;
 		}
-		else
-			i++;
 	}
 	return (words);
 }
@@ -53,10 +53,11 @@ void	free_mem(char **s, int i)
 	free(s);
 }
 
-void	create_words(char **array, char *str, char c)
+int	create_words(char **array, const char *str, char c)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	i = 0;
 	j = 0;
@@ -64,24 +65,25 @@ void	create_words(char **array, char *str, char c)
 	{
 		while (str[i] == c)
 			i++;
-		if (str[i] != c)
+		if (str[i] != '\0')
 		{
-			array[j] = ft_substr(str, 0, len_word_array(str, c));
+			len = len_word_array(str + i, c);
+			array[j] = ft_substr(str, i, len);
 			if (array[j] == NULL)
 			{
-				free_mem(array, j);
-				return (NULL);
+				free_mem(array, j - 1);
+				return (0);
 			}
-			str = str + len_word_array(str,c);
+			i = i + len;
 			j++;
-		}		
+		}
 	}
 	array[j] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	char	**array;
 
 	if (!s)
@@ -89,6 +91,7 @@ char	**ft_split(char const *s, char c)
 	array = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
-	create_words(array, s, c);
+	if (!create_words(array, s, c))
+		return (NULL);
 	return (array);
 }

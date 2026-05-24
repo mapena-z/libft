@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:16:58 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/18 18:34:22 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 15:22:27 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			return ((char *)&s[i]);
 		i++;
 	}
