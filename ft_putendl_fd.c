@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:56:48 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/22 21:16:42 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 21:32:34 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putendl_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i] != '\0')
 	{
 		write(fd, &s[i], 1);

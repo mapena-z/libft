@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 10:40:00 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/20 11:11:36 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 21:34:15 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start + len > ft_strlen(s))
 		len = ft_strlen(s) - start;
 	if (start >= ft_strlen(s))
-	{
-		str = malloc(1);
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
+		return (ft_calloc(1, 1));
 	i = 0;
 	str = malloc(len + 1);
 	if (!str)

@@ -6,7 +6,7 @@
 /*   By: mapena-z <mapena-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:39:20 by mapena-z          #+#    #+#             */
-/*   Updated: 2026/05/24 17:32:37 by mapena-z         ###   ########.fr       */
+/*   Updated: 2026/05/24 18:42:40 by mapena-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	if (i < n)
-		return (str2[i]);
+		return (str1[i] - str2[i]);
 	return (0);
 }
