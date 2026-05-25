@@ -20,6 +20,9 @@ GREEN = \033[0;32m
 NC = \033[0m
 RED = \033[0;31m
 YELLOW = \033[0;33m
+CYAN = \033[0;36m
+WHITE = \033[1;37m
+
 TOTAL_OBJ = $(words $(OBJECTS))
 
 all: $(NAME)
@@ -31,13 +34,25 @@ $(NAME): $(OBJECTS)
 	@echo "$(GREEN)libft compilation completed!$(NC)"
 
 %.o: %.c
+	@$(eval COMPLETED = $(shell ls -1 *.o 2>/dev/null | wc -l))
+	@if [ $(COMPLETED) -eq 0 ]; then \
+		echo "$(CYAN)"; \
+		echo "  _      _____ ____  ______ _______ "; \
+		echo " | |    |_   _|  _ \|  ____|__   __|"; \
+		echo " | |      | | | |_) | |__     | |   "; \
+		echo " | |      | | |  _ <|  __|    | |   "; \
+		echo " | |____ _| |_| |_) | |       | |   "; \
+		echo " |______|_____|____/|_|       |_|   "; \
+		echo "                                    "; \
+		echo "        $(WHITE)By: mapena-z$(CYAN)           "; \
+		echo "$(NC)"; \
+	fi
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(MAKE) -s progress
 
 clean:
 	@$(RM) $(OBJECTS)
 	@echo "$(YELLOW)Cleaning up object files for libft...$(NC)"
-
 
 fclean:
 	@$(RM) $(OBJECTS) $(NAME)
@@ -47,16 +62,16 @@ re: fclean all
 
 progress:
 	@$(eval COMPLETED = $(shell ls -1 $(OBJECTS) 2>/dev/null | wc -l))
-	@$(eval PERCENTAGE = $(shell echo "scale=2; 100 * $(COMPLETED) / $(TOTAL_OBJ)" | bc))
-	@$(eval BAR_LENGTH = 50)
-	@$(eval FILLED_LENGTH = $(shell echo "$(BAR_LENGTH) * $(COMPLETED) / $(TOTAL_OBJ)" | bc))
-	@$(eval EMPTY_LENGTH = $(shell echo "$(BAR_LENGTH) - $(FILLED_LENGTH)" | bc))
-	@echo -n "$(GREEN)["
-	@$(eval BAR = $(shell yes "=" | head -n $(FILLED_LENGTH) | tr -d '\n'))
-	@$(eval EMPTY = $(shell yes " " | head -n $(EMPTY_LENGTH) | tr -d '\n'))
-	@echo -n "$(BAR)$(EMPTY)"
-	@echo -n "] $(PERCENTAGE)%"
-	@echo -n "\r"
-	@sleep 0.05
+	@# Protegemos contra división por cero si no hay objetos todavía
+	@if [ $(TOTAL_OBJ) -gt 0 ]; then \
+		PERCENTAGE=$$(echo "scale=2; 100 * $(COMPLETED) / $(TOTAL_OBJ)" | bc); \
+		BAR_LENGTH=50; \
+		FILLED_LENGTH=$$(echo "$$BAR_LENGTH * $(COMPLETED) / $(TOTAL_OBJ)" | bc); \
+		EMPTY_LENGTH=$$(echo "$$BAR_LENGTH - $$FILLED_LENGTH" | bc); \
+		BAR=$$(yes "=" | head -n $$FILLED_LENGTH | tr -d '\n'); \
+		EMPTY=$$(yes " " | head -n $$EMPTY_LENGTH | tr -d '\n'); \
+		echo -n "$(GREEN)[$$BAR$$EMPTY] $$PERCENTAGE%\r"; \
+	fi
+	@sleep 0.02
 
 .PHONY: all clean fclean re progress
